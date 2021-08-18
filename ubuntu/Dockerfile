@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 MAINTAINER Hannu Kumpula <hannu.kumpula@geniem.com>
 ## Forked from Onni Hakala's debian version
 
@@ -39,7 +39,7 @@ RUN set -x \
  #  && unset CONFIGURE_OPTS \
 
     # Install ca-certificates
-    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && apt-get install -y --no-install-recommends curl ca-certificates gpg dirmngr gpg-agent \
 
     # This folder is in $PATH by default but isn't created by default
     && mkdir -p /usr/local/sbin \
