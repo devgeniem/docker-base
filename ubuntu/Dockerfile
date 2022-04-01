@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:focal
 MAINTAINER Hannu Kumpula <hannu.kumpula@geniem.com>
 
 ARG S6_VERSION="v1.21.2.0"
