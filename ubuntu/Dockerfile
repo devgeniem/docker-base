@@ -1,16 +1,16 @@
 FROM ubuntu:focal
 MAINTAINER Hannu Kumpula <hannu.kumpula@geniem.com>
 
-ARG S6_VERSION="v1.21.2.0"
-
 # adds file from the shinsenter/s6-overlay image
 COPY --from=shinsenter/s6-overlay / /
-ENTRYPOINT ["/init"]
 
 # Finland is quite nice place to live.
 # Instead of forking this you should move your living address here.
 ENV TZ="Europe/Helsinki" \
     DEBIAN_FRONTEND=noninteractive
+
+# Sdd symlink to run s6 commands
+RUN ln -s /command/* /usr/bin/
 
 RUN set -x \
     # Update sources and upgrade all packages
@@ -22,7 +22,8 @@ RUN set -x \
     # This folder is in $PATH by default but isn't created by default
     && mkdir -p /usr/local/sbin \
     && cd /usr/local/sbin \
-    # Install sha256sum validator to check that we download the right files
+    # Install sha256sum validator to check that we download the right files ## TODO Move this somewhere else
+    ## TODO: Move this somewhere else
     && curl -L -o validate_sha256sum https://gist.githubusercontent.com/Hooace/94f42d2d107f4e4cf13bb721c5c63218/raw/d3ef37ab4a653e1b7655df55dfeadd54e0bacf84/validate_sha256sum \
     # This is semi meta but validate that our validator is valid
     && sha256sum validate_sha256sum | grep 0f7b790036f7cd00610cbe9e79c5b6b42d5b0e02beaff9549bdc43fc99910709 \
