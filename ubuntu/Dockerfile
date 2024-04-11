@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:noble
 MAINTAINER Hannu Kumpula <hannu.kumpula@geniem.com>
 
 # adds file from the shinsenter/s6-overlay image
