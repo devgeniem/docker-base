@@ -15,11 +15,11 @@ RUN set -x \
 
     # Add all deb-src addresses
     && echo "deb http://deb.debian.org/debian jessie main\n\
-deb-src http://deb.debian.org/debian jessie main\n\
-deb http://deb.debian.org/debian jessie-updates main\n\
-deb-src http://deb.debian.org/debian jessie-updates main\n\
-deb http://security.debian.org jessie/updates main\n\
-deb-src http://security.debian.org/ jessie/updates main" > /etc/apt/sources.list \
+    deb-src http://deb.debian.org/debian jessie main\n\
+    deb http://deb.debian.org/debian jessie-updates main\n\
+    deb-src http://deb.debian.org/debian jessie-updates main\n\
+    deb http://security.debian.org jessie/updates main\n\
+    deb-src http://security.debian.org/ jessie/updates main" > /etc/apt/sources.list \
 
     # Update sources and upgrade all packages
     && apt-get update -y \

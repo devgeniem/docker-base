@@ -1,5 +1,7 @@
 FROM ubuntu:noble
-MAINTAINER Hannu Kumpula <hannu.kumpula@geniem.com>
+LABEL mainainer="Jussi Alanen <jussi.alanen@hiondigital.com>"
+
+ARG GOSU_VERSION=1.12
 
 # adds file from the shinsenter/s6-overlay image
 COPY --from=shinsenter/s6-overlay / /
@@ -45,8 +47,11 @@ RUN set -x \
     ##
     # Install gosu to fix misbehaving su in some environments
     ##
-    && apt-get install gosu \
+    && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
+    && curl -L -o /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
+    && chmod +x /usr/local/bin/gosu \
     && gosu nobody true \
+
     ##
     # Create a few aliases
     # - I didn't figure out how to load aliases into sh shell with docker so we add scripts instead
