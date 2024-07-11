@@ -1,4 +1,4 @@
-FROM ubuntu:noble
+FROM ubuntu:jammy
 LABEL mainainer="Jussi Alanen <jussi.alanen@hiondigital.com>"
 
 ARG GOSU_VERSION=1.12
