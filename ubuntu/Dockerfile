@@ -13,12 +13,6 @@ ENV TZ="Europe/Helsinki" \
     DEBIAN_FRONTEND=noninteractive
 
 RUN set -x \
-    # Add all deb-src addresses
-    && echo "deb http://mirrors.nic.funet.fi/ubuntu/ focal main\n\
-    deb-src http://mirrors.nic.funet.fi/ubuntu/ focal main\n\
-    deb http://archive.ubuntu.com/ubuntu focal main restricted universe\n\
-    deb http://mirrors.nic.funet.fi/ubuntu/ focal-updates main\n\
-    deb-src http://mirrors.nic.funet.fi/ubuntu/ focal-updates main" > /etc/apt/sources.list \
     # Update sources and upgrade all packages
     && chown -R _apt:root /var/lib/apt/lists \
     && apt-get update -y \
